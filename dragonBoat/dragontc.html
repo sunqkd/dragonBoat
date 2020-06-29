@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>端[5]送大禮</title>
+</head>
+<style>
+*{
+    margin:0;padding:0
+}
+img{
+    display:block;
+    height: auto
+}
+a{
+    display:inline-block;
+}
+.banner01{
+    width:100%;
+    margin-bottom:-1px
+}
+.banner02Conter{
+    width:100%;
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:10px;
+}
+.banner02{
+    width:100%;
+}
+.word{
+    width:65%;
+    position:absolute;
+    top:0;
+}
+.footBtn{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+.footBtn a img{
+    width:45px;
+}
+.footBtn a:nth-child(1){
+    margin-right:30px;
+}
+</style>
+<body>
+    <div id="app">
+        <img src="./images/bg1_01.jpg" alt="" class="banner01">
+        <div class="banner02Conter">
+            <img src="./images/bg1_02.jpg" alt="" class="banner02">
+            <img src="./images/word1.png" alt="" class="word">
+            <div class="footBtn">
+                <a href="https://www.facebook.com/whoot.hk/">
+                    <img src="./images/icon_fb.png" alt="">
+                </a>
+                <a href="https://www.instagram.com/whoot_hk/">
+                    <img src="./images/icon_in.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    
+                }
+            },
+            created(){
+                var title = JSON.stringify({ touchPos: 'title', title: '端[5]送大禮' })
+                var system = navigator.userAgent.toLowerCase()
+                if (system.indexOf('os') > 0) {
+                    alert(title)
+                } else {
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
