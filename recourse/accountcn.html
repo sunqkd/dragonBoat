@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>帳戶</title>
+</head>
+<style>
+    *{margin:0;padding:0}
+    html,body{
+        width:100%;
+        height:100%;
+        font-size:26.67vw;
+        background:rgb(255,102,0);
+    }
+    .banner{
+        font-family: MYuenHK;
+        padding: 0.29rem 0.19rem;
+        box-sizing: border-box;
+        font-size:0.4rem;
+        color:rgb(255,255,255);
+        width:100%;
+        height:1.5rem;
+        background:url('./img/bg_2.png') no-repeat;
+        background-size: contain;
+    }
+    .radiusContain{
+        width:100%;
+        padding:0 0.175rem;
+        box-sizing: border-box;
+    }
+    .itemuniform{
+        width:100%;
+        padding: 0.14rem 0.2rem 0.23rem 0.2rem;
+        margin-bottom: 0.18rem;
+        border-radius: 0.1rem;
+        background:#fff;
+        box-sizing: border-box;
+    }
+    .itemImg{
+        width:100%;
+        display:flex;
+        align-items: center;
+        margin-bottom:0.12rem;
+        font-size:0.17rem;
+        color:rgb(255,102,0);
+    }
+    .itemImg img{
+        display:inline-block;
+        margin-right:0.09rem;
+        width:0.21rem;
+        height:0.21rem;
+    }
+    .textcontent{
+        font-size:0.13rem;
+        color:rgb(102,102,102);
+        line-height: 0.2rem;
+    }
+    .facebookImg {
+        width:100%;
+        margin-top:0.32rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .facebookImg img{
+        display: inline-block;
+        width:1.69rem;
+        height:auto;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="banner">
+            <b>帳戶</b>
+        </div>
+        <div class="radiusContain">
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何註冊Whoot! Stamp？</b></span>
+                </div>
+                <div class="textcontent">
+                    下載並安裝Whoot! Stamp應用程式後，你可以以下方式註冊：<br/>
+                    1. 使用Facebook帳戶註冊：打開Whoot! Stamp，進入「登入」頁面，選擇「Facebook登入」，Whoot! Stamp會訪問Facebook，使用你的Facebook帳戶登入Whoot! Stamp；<br/>
+                    2.使用Apple帳戶註冊：打開Whoot! Stamp，進入「登入」頁面，選擇「Apple登入」，Whoot! Stamp會訪問Apple，使用你的Apple帳戶登入Whoot! Stamp；<br/>
+                    3. 使用手機號號碼註冊：打開Whoot! Stamp，進入「登入」頁面，選擇「新用戶註冊」，選擇國家或地區號碼，輸入手機號碼，根據頁面提示完成註冊；<br/>
+                    4. 使用郵箱註冊：打開Whoot! Stamp，進入「登入」頁面，選擇「新用戶註冊」，切換至使用郵箱註冊，輸入姓名、郵箱及密碼後，根據頁面提示完成註冊。                
+                </div>
+                <div class="facebookImg">
+                    <img src="./img/account_p1.png" alt="">
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何綁定/更改手機號？</b></span>
+                </div>
+                <div class="textcontent">
+                    進入 「我的」 頁面，點擊 「設定」 ，進入 「帳戶安全」 頁面，選擇 「手機號碼」 ，根據頁面提示完成綁定/更改手機號。
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何更改密碼？</b></span>
+                </div>
+                <div class="textcontent">
+                    進入 「我的」 頁面，點擊 「設定」 ，進入 「帳戶安全」 頁面，選擇 「更改密碼」，輸入現有密碼及新密碼，並再次輸入新密碼，根據頁面提示完成更改密碼。
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何更改個人資料？</b></span>
+                </div>
+                <div class="textcontent">
+                    進入 「我的」 頁面，點擊頭像進入頁面後便可修改個人資料。
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return { 
+                    
+                }
+            },
+            created(){
+                var title = JSON.stringify({ touchPos: 'title', title: '帳戶' })
+                var system = navigator.userAgent.toLowerCase()
+                if (system.indexOf('os') > 0) {
+                    alert(title)
+                } else { }
+            }
+        })
+    </script>
+</body>
+</html>

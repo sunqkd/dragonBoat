@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>食評</title>
+</head>
+<style>
+    *{margin:0;padding:0}
+    html,body{
+        width:100%;
+        height:100%;
+        font-size:26.67vw;
+        background:rgb(255,102,0);
+    }
+    .banner{
+        font-family: MYuenHK;
+        padding: 0.29rem 0.19rem;
+        box-sizing: border-box;
+        font-size:0.4rem;
+        color:rgb(255,255,255);
+        width:100%;
+        height:1.5rem;
+        background:url('./img/bg_4.png') no-repeat;
+        background-size: contain;
+    }
+    .radiusContain{
+        width:100%;
+        padding:0 0.175rem;
+        box-sizing: border-box;
+    }
+    .itemuniform{
+        width:100%;
+        padding: 0.14rem 0.2rem 0.23rem 0.2rem;
+        margin-bottom: 0.18rem;
+        border-radius: 0.1rem;
+        background:#fff;
+        box-sizing: border-box;
+    }
+    .itemImg{
+        width:100%;
+        display:flex;
+        align-items: center;
+        margin-bottom:0.12rem;
+        font-size:0.17rem;
+        color:rgb(255,102,0);
+    }
+    .itemImg img{
+        display:inline-block;
+        margin-right:0.09rem;
+        width:0.21rem;
+        height:0.21rem;
+    }
+    .textcontent{
+        font-size:0.13rem;
+        color:rgb(102,102,102);
+        line-height: 0.2rem;
+    }
+    .dishImg {
+        width:100%;
+        margin-top:0.15rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dishImg img{
+        display: inline-block;
+        width:100%;
+        height:auto;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="banner">
+            <b>食評</b>
+        </div>
+        <div class="radiusContain">
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何撰寫食評？</b></span>
+                </div>
+                <div class="textcontent">
+                    獲得印花後，可點擊「寫食評」進入頁面，選擇評分並輸入評語完成評價（評價刊登後可獲得美食積分獎勵）。
+                </div>     
+                <div class="dishImg">
+                    <img src="./img/review_p1.png" alt="">
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何查看食評？</b></span>
+                </div>
+                <div class="textcontent">
+                    進入「我的」，點擊「我的食評」進入頁面後便可查看全部食評。
+                </div>
+                <div class="dishImg">
+                    <img src="./img/review_p2.png" alt="">
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>我可以更改或刪除食評嗎？</b></span>
+                </div>
+                <div class="textcontent">
+                    抱歉，食評一旦發表後便無法修改或刪除
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return { 
+                    
+                }
+            },
+            created(){
+                var title = JSON.stringify({ touchPos: 'title', title: '食評' })
+                var system = navigator.userAgent.toLowerCase()
+                if (system.indexOf('os') > 0) {
+                    alert(title)
+                } else { }
+            }
+        })
+    </script>
+</body>
+</html>

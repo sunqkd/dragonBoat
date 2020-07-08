@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>印花</title>
+</head>
+<style>
+    *{margin:0;padding:0}
+    html,body{
+        width:100%;
+        height:100%;
+        font-size:26.67vw;
+        background:rgb(255,102,0);
+    }
+    .banner{
+        font-family: MYuenHK;
+        padding: 0.29rem 0.19rem;
+        box-sizing: border-box;
+        font-size:0.4rem;
+        color:rgb(255,255,255);
+        width:100%;
+        height:1.5rem;
+        background:url('./img/bg_3.png') no-repeat;
+        background-size: contain;
+    }
+    .radiusContain{
+        width:100%;
+        padding:0 0.175rem;
+        box-sizing: border-box;
+    }
+    .itemuniform{
+        width:100%;
+        padding: 0.14rem 0.2rem 0.23rem 0.2rem;
+        margin-bottom: 0.18rem;
+        border-radius: 0.1rem;
+        background:#fff;
+        box-sizing: border-box;
+    }
+    .itemImg{
+        width:100%;
+        display:flex;
+        align-items: center;
+        margin-bottom:0.12rem;
+        font-size:0.17rem;
+        color:rgb(255,102,0);
+    }
+    .itemImg img{
+        display:inline-block;
+        margin-right:0.09rem;
+        width:0.21rem;
+        height:0.21rem;
+    }
+    .textcontent{
+        font-size:0.13rem;
+        color:rgb(102,102,102);
+        line-height: 0.2rem;
+    }
+    .dishImg {
+        width:100%;
+        margin-top:0.15rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dishImg img{
+        display: inline-block;
+        width:100%;
+        height:auto;
+    }
+    .starContain{
+        width:100%;
+    }
+    .startItem{
+        width:100%;
+        margin-bottom:0.15rem;
+        display:flex;
+        justify-content: space-between;
+    }
+    .starLeft{
+        width:0.13rem;
+        margin-right: 0.1rem;
+        display:flex;
+        align-items: flex-start;
+    }
+    .startRight{
+        flex:1;
+    }
+    .starLeft img {
+        display:inline-block;
+        width:0.13rem;
+        height:auto;
+    }
+    .rightText{
+        font-size:0.13rem;
+        line-height:0.2rem;
+    }
+    .rightImg{
+        width:100%;
+        display:flex;
+        align-items: center;
+    }
+    .rightImg img{
+        height:auto;
+    }
+    .attention{
+        width:100%;
+        margin-top:0.2rem;
+        padding:0.11rem 0.13rem;
+        box-sizing: border-box;
+        color:rgb(255,102,0);
+        background:rgba(255,102,0,0.14);
+        font-size:0.12rem;
+        line-height:0.2rem;
+    }
+    .attentionTitle{
+        font-size:0.13rem;
+        margin-bottom: 0.1rem;
+    }
+    .stipulation{
+        width:100%;
+        padding:0.1rem 0 0.29rem 0;
+        box-sizing: border-box;
+        text-align: center;
+        color:#fff;
+        font-size:0.13rem;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="banner">
+            <b>印花</b>
+        </div>
+        <div class="radiusContain">
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>如何獲取印花？</b></span>
+                </div>
+                <div class="textcontent">
+                    消費時向餐廳員工出示「我的QR code」餐廳員工掃瞄後，對應印花頁面即會自動累積印花
+                </div>     
+                <div class="dishImg">
+                    <img src="./img/stamp_p1.png" alt="">
+                </div>
+            </div>
+            <div class="itemuniform">
+                <div class="itemImg">
+                    <img src="./img/title_pic_q.png" alt="">
+                    <span><b>Whoot! Stamp如何運作？</b></span>
+                </div>
+                <div class="starContain">
+                    <div class="startItem">
+                        <div class="starLeft">
+                            <img src="./img/title_icon_star.png" alt="">
+                        </div>
+                        <div class="startRight">
+                            <div class="rightText">
+                                累積至<span style="color:rgb(51,51,51);font-size:0.14rem"><b> 3 </b></span>個印花時，向店員展示該印花，即可獲得<span style="color:rgb(208,159,122)"><b>精選菜式</b><span>
+                            </div>
+                            <div class="rightImg">
+                                <img style="width:1.815rem" src="./img/stamp_reward1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="startItem">
+                        <div class="starLeft">
+                            <img src="./img/title_icon_star.png" alt="">
+                        </div>
+                        <div class="startRight">
+                            <div class="rightText">
+                                累積至<span style="color:rgb(51,51,51);font-size:0.14rem"><b> 6 </b></span>個印花時，向店員展示該印花，即可獲得<span style="color:rgb(150,174,187)"><b>特選菜式</b><span>
+                            </div>
+                            <div class="rightImg">
+                                <img style="width:1.815rem" src="./img/stamp_reward2.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="startItem">
+                        <div class="starLeft">
+                            <img src="./img/title_icon_star.png" alt="">
+                        </div>
+                        <div class="startRight">
+                            <div class="rightText">
+                                累積至<span style="color:rgb(51,51,51);font-size:0.14rem"><b> 9 </b></span>個印花時，向店員展示該印花，即可獲得<span style="color:rgb(233,192,48)"><b>招牌菜式半價優惠</b><span>
+                            </div>
+                            <div class="rightImg">
+                                <img style="width:2.25rem" src="./img/stamp_reward3.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attention">
+                    <div class="attentionTitle"><b>注意事項</b></div>
+                    <span>
+                        2小時內最多只可獲得1個印花<br/>相關條款及細則可參考「我的」 → 「設定」 → 「條款及細則」
+                    </span>
+                </div>
+            </div>
+            <div class="stipulation">
+                <b>獲得印花時須遵循實際餐廳的規定</b>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return { 
+                    
+                }
+            },
+            created(){
+                var title = JSON.stringify({ touchPos: 'title', title: '印花' })
+                var system = navigator.userAgent.toLowerCase()
+                if (system.indexOf('os') > 0) {
+                    alert(title)
+                } else { }
+            }
+        })
+    </script>
+</body>
+</html>
