@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Whoot! Stamp 簡介</title>
+    <style type="text/css">
+        body {
+            background: url(https://about.whoot.com/about_bg.jpg) center top no-repeat;
+            background-size: cover;
+        }
+        .about {
+            padding-top: 45px;
+            text-align: justify;
+            width: 90%;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 30px;
+        }
+        .about h4 {
+            font-size: 15px;
+        }
+        .about-logo {
+            height: 60px;
+            text-align: center;
+            background: url(https://about.whoot.com/about_logo.jpg) center top no-repeat;
+            background-size: contain;
+            margin: 0 auto;
+        }
+        img {
+            width: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="about">
+        <div class="about-logo"></div>
+        <h4 style="text-align: center;" id="version">版本&nbsp;&nbsp;</h4>
+        <p>Whoot! Stamp是跨餐廳的獎賞應用程式，你每次在喜愛的餐廳、酒吧和咖啡店用餐時，都可以得到印花，以獲得絕佳獎賞。Whoot! Stamp完全免費，毋須預付，亦無隱藏收費。不錯吧？立即下載試試！</p>
+    </div>
+    <script>
+        var title = JSON.stringify({ touchPos: 'title', title: 'Whoot! Stamp 簡介' })
+        var system = navigator.userAgent.toLowerCase()
+        if (system.indexOf('os') > 0) {
+            alert(title)
+        } else { }
+        var version = window.location.search.substring(9)
+        version.length > 0 ? document.getElementById('version').append(version) :
+            document.getElementById('version').append('4.0.0')
+    </script>
+</body>
+
+</html>

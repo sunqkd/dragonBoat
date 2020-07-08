@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About Whoot! Stamp</title>
+    <style type="text/css">
+        body {
+            background: url(https://about.whoot.com/about_bg.jpg) center top no-repeat;
+            background-size: cover;
+        }
+        .about {
+            padding-top: 45px;
+            text-align: justify;
+            width: 90%;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 30px;
+        }
+        .about h4 {
+            font-size: 15px;
+        }
+        .about-logo {
+            height: 60px;
+            text-align: center;
+            background: url(https://about.whoot.com/about_logo.jpg) center top no-repeat;
+            background-size: contain;
+            margin: 0 auto;
+        }
+        img {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="about">
+        <div class="about-logo"></div>
+        <h4 style="text-align: center;" id="version">Version&nbsp;&nbsp;</h4>
+        <p>Whoot! Stamp is a dining rewards app that connects various restaurants. Every time you dine in your favourite restaurant, bar or cafe, you gain a Whoot! Stamp that will lead to fantastic rewards. Whoot! Stamp is totally free, requiring no prepayment or hidden charges. Sounds terrific, eh? Download now and give it a try!</p>
+    </div>
+    <script>
+        var title = JSON.stringify({ touchPos: 'title', title: 'About Whoot! Stamp' })
+        var system = navigator.userAgent.toLowerCase()
+        if (system.indexOf('os') > 0) {
+            alert(title)
+        } else { }
+        var version = window.location.search.substring(9)
+        version.length > 0 ? document.getElementById('version').append(version) :
+            document.getElementById('version').append('4.0.0')
+    </script>
+</body>
+
+</html>
