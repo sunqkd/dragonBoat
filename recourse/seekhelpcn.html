@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>求助 / 問題反映</title>
+</head>
+<style>
+    *{margin:0;padding:0}
+    html,body{
+        width:100%;
+        height:100%;
+        font-size:26.67vw;
+        background:rgb(243,244,246);
+    }
+    .seekcontain{
+        width:100%;
+        margin-top:0.1rem;
+        box-sizing: border-box;
+        background:rgb(255,255,255);
+    }
+    .seekitem{
+        width:100%;
+        height:0.465rem;
+        display:block;
+        background:rgb(255,255,255);
+        font-size:0.16rem;
+        color:rgb(51,51,51);
+        text-decoration: none;
+    }
+    .itemContain{
+        width:calc(100% - 0.1rem);
+        height:100%;
+        box-sizing: border-box;
+        border-bottom:1px solid rgb(229,229,229);
+        margin-left:0.15rem;
+        padding-right:0.175rem;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .triangle img{
+        width:0.07rem;
+        height:auto;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="seekcontain">
+            <a class="seekitem" href="https://about.whoot.com/recourse/introductioncn.html">
+                <div class="itemContain">
+                    <span>基本介紹</span>
+                    <div class="triangle">
+                        <img src="./img/storedetail.png" alt="">
+                    </div>
+                </div>
+            </a>
+            <a class="seekitem" href="https://about.whoot.com/recourse/accountcn.html">
+                <div class="itemContain">
+                    <span>帳戶</span>
+                    <div class="triangle">
+                        <img src="./img/storedetail.png" alt="">
+                    </div>
+                </div>
+            </a>
+            <a class="seekitem" href="https://about.whoot.com/recourse/stampcn.html">
+                <div class="itemContain">
+                    <span>印花</span>
+                    <div class="triangle">
+                        <img src="./img/storedetail.png" alt="">
+                    </div>
+                </div>
+            </a>
+            <a class="seekitem" href="https://about.whoot.com/recourse/foodcriticcn.html">
+                <div class="itemContain">
+                    <span>食評</span>
+                    <div class="triangle">
+                        <img src="./img/storedetail.png" alt="">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return { 
+                    
+                }
+            },
+            created(){
+                var title = JSON.stringify({ touchPos: 'title', title: '求助 / 問題反映', flag: true })
+                var system = navigator.userAgent.toLowerCase()
+                if (system.indexOf('os') > 0) {
+                    alert(title)
+                } else { }
+            }
+        })
+    </script>
+</body>
+</html>
