@@ -100,5 +100,15 @@
             }
         })
     </script>
+    <script>
+        var browserRule = /^.*((iPhone)|(iPad)|(Safari))+.*$/;
+        if (browserRule.test(navigator.userAgent)) {
+            window.onpageshow = function(event) {
+                if (event.persisted) {
+                    window.location.reload()
+                }
+            };
+        }
+    </script>
 </body>
 </html>
