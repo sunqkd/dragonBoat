@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>關於 Whoot!</title>
+  <style type="text/css">
+    body {
+      background: url(https://about.whoot.com/about_bg.jpg) center top no-repeat;
+      background-size: cover;
+    }
+    .about {
+      padding-top: 45px;
+      text-align: justify;
+      width: 90%;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #2c3e50;
+      line-height: 30px;
+    }
+    .about h4 {
+      font-size: 15px;
+    }
+    .about-logo {
+      height: 60px;
+      text-align: center;
+      background: url(https://about.whoot.com/about_logo.jpg) center top no-repeat;
+      background-size: contain;
+      margin: 0 auto;
+    }
+    img {
+      width: 70%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="about">
+    <div class="about-logo"></div>
+    <h4 style="text-align: center;" id="version">版本&nbsp;&nbsp;</h4>
+    <p>Whoot! 是一個跨餐廳的獎賞應用程式，在您每次用餐時，我們都會在您最喜愛的餐廳，酒吧和咖啡店提供絕佳獎賞。獎賞包括飲品、前菜、甜品甚至主菜。聽起來不錯？無需預付，無隱藏收費，Whoot! 是完全免費的。在你註冊成為 Whoot! 用戶即可獲贈一份獎賞！立即下載 Whoot!並 登入便可馬上獲得獎賞。</p>
+  </div>
+  <script>
+    var title = JSON.stringify({ touchPos: 'title', title: '關於 Whoot!' })
+    var system = navigator.userAgent.toLowerCase()
+    if (system.indexOf('os') > 0) {
+      alert(title)
+    } else { }
+    var version = window.location.search.substring(9)
+    version.length > 0 ? document.getElementById('version').append(version) : document.getElementById('version').append('2.2.0')
+  </script>
+</body>
+
+</html>
