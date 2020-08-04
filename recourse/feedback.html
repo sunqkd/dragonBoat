@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.9/lib/index.css" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-size: 26.67vw;
+    }
+
+    .feedback-page {
+        text-align: left;
+        background: #ffffff;
+        padding: 25px 16px 0 16px;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .feedback-page .van-cell {
+        line-height: 28px;
+        padding: 10px 0;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    .feedback-page .van-hairline--top-bottom::after,
+    .feedback-page .van-hairline-unset--top-bottom::after {
+        border-top: none;
+        border: none;
+    }
+
+    .feedback-page .common-input ::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        border-bottom: 1px solid #ebedf0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        /* -webkit-transform: scale(.55,.55);
+		transform: scale(.55,.55); */
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .feedback-page .color-input ::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        border-bottom: 1px solid #fc4a1a;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .feedback-page .van-cell :not(:last-child) ::after {
+        border-bottom: none;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 10px 0 0 0;
+        color: #cccccc;
+        font-weight: normal;
+        font-size: 12px;
+    }
+
+    .feedback-page .cell-btn .van-cell__value {
+        text-align: center;
+    }
+
+    .feedback-page .cell-btn .van-button--info {
+        background: linear-gradient(90deg, #fc4a1a 0%, #f58019 100%);
+        border: none;
+    }
+
+    .feedback-page .van-cell__title {
+        max-width: .4rem;
+        margin-right: 0.1rem;
+    }
+
+    .feedback-page .van-cell__title span {
+        color: #969799;
+        max-width: 3rem;
+    }
+
+    .feedback-page .van-cell:not(:last-child)::after {
+        margin-left: 0;
+    }
+
+    .feedback-page .van-cell__value {
+        text-align: left;
+    }
+
+    .feedback-page .van-uploader {
+        vertical-align: top;
+    }
+
+    .feedback-page .no-line .van-cell:not(:last-child)::after {
+        border-bottom: 0;
+    }
+
+    .feedback-page .van-field__control {
+        caret-color: #fc4b1a;
+        margin-bottom: 10px;
+    }
+
+    .feedback-page .email-box {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .feedback-page .email-box h2 {
+        color: #333333;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        padding: 10px 0 0 0;
+    }
+
+    .feedback-page .email-box img {
+        width: 110px;
+        height: 73px;
+        margin-bottom: 12px;
+    }
+
+    .feedback-page .email-box span {
+        font-size: 14px;
+        display: block;
+    }
+
+    .feedback-page .email-box button {
+        margin-top: 35px;
+        background-color: #fc4d1a;
+        border: none;
+    }
+
+    .feedback-page .van-toast {
+        border-radius: 10px;
+    }
+
+    .feedback-page .content-form .el-textarea__inner {
+        min-height: 48px !important;
+        border: none;
+        line-height: 28px;
+        padding: 10px 0 20px 0;
+        box-sizing: border-box;
+        caret-color: #fc4b1a;
+        color: #323233;
+        border-radius: 0px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        font-size: 15px;
+    }
+
+    .feedback-page .van-uploader__preview {
+        margin: 0 15px 15px 0;
+    }
+
+    .feedback-page .van-uploader__preview-delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #666;
+        font-size: 18px;
+        background-color: #fff;
+        border-radius: 100%;
+        height: 18px;
+        padding: 0;
+        opacity: 0.73;
+    }
+
+    .feedback-page .el-input__count {
+        color: #999;
+        bottom: 0;
+        right: 0;
+    }
+
+    .content-form textarea ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #999;
+    }
+
+    .content-form textarea :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #999;
+    }
+
+    .content-form textarea ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #999;
+    }
+
+    .content-form textarea ::-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #999;
+    }
+
+    .loadingImg {
+        position: relative;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        box-sizing: border-box;
+        margin: 0 8px 8px 0;
+        background-color: #fff;
+        border: 1px dashed #e5e5e5;
+        border-radius: 5px;
+    }
+
+    .van-uploader__preview-image img {
+        border-radius: 5px;
+    }
+
+    .pre-img {
+        display: inline-block;
+        width: 0.9rem;
+        height: 0;
+        padding-bottom: 0.9rem;
+        overflow: hidden;
+        cursor: pointer;
+        background-position: center center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+
+    .del-pic {
+        position: relative;
+    }
+
+    .del-pic i {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 20px;
+        opacity: 0.8;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="feedback-page">
+            <!-- 联系方式 -->
+            <van-cell-group>
+                <transition name="van-slide-up">
+                    <h2 v-show="showContactTitle">手機號碼 / 電郵（選填，方便 Whoot! 與你聯絡）</h2>
+                </transition>
+                <van-field ref="contactInput" :placeholder="getPlaceHoder('contact')" v-model.trim="form.contact"
+                    :class="[hideContactBlur ? 'common-input':'color-input']" @focus="showTitle('contact')"
+                    @blur="hideTitle('contact')" maxlength="50" clearable />
+            </van-cell-group>
+            <!-- 问题表述 -->
+            <van-cell-group>
+                <transition name="van-slide-up">
+                    <h2 v-show="showContentTitle">請描述你遇到的問題</h2>
+                </transition>
+                <van-field
+                   ref="contentInput" 
+                   :placeholder="getPlaceHoder('detail')"
+                    class="content-form"
+                    v-model="form.detail"
+                    rows="2"
+                    autosize
+                    resize="none"
+                    label=""
+                    type="textarea"
+                    maxlength="200"
+                    show-word-limit
+                    @focus="showTitle('content')" @blur="hideTitle('content')" 
+                />
+            </van-cell-group> 
+            <!-- 问题图片 -->
+            <van-cell-group style="padding: 25px 0 10px 0;">
+                <div class="feed-pic">
+                   
+                    <div v-for="(pic,index) in picUrlList" :key="index" :style="{backgroundImage: `url(${pic})` }"
+                        style="margin: 0 5px 5px 0;" class="pre-img">
+                        <div class="del-pic"><i class="el-icon-error" @click="delPic(pic)"></i></div>
+                    </div>
+                    
+                    <van-uploader v-if="!overMaxCount" multiple :after-read="afterRead" :disabled="disableUpload">
+                        <div v-if="uploadImg" class="loadingImg" style="width: 0.9rem;height: 0.9rem">
+                            <van-loading type="spinner" />
+                        </div>
+                        <img v-if="!uploadImg" style="width: 0.9rem;height: 0.9rem;display: inline-block;"
+                            src="./img/image-upload.png" alt="">
+                    </van-uploader>
+                </div>
+            </van-cell-group>
+            <!-- 提交按钮 -->
+            <van-cell class="cell-btn">
+                <van-button round :disabled="btnDis" type="info" style="width: 85%;" @click.native="submitFeedback">提交
+                </van-button>
+            </van-cell>
+            <!-- 提交成功 -->
+            <van-popup v-model="showSuccess" round :close-on-click-overlay="false" style="width: 80%;">
+                <div class="email-box">
+                    <img src="./img/login_forget_icon_sendmail.png" alt="">
+                    <h2>提交成功</h2>
+                    <span>感謝您的意見</span>
+                    <van-button round type="info" style="width: 70%;" @click.native="closeMailPop">好的</van-button>
+                </div>
+            </van-popup>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript" src="./axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.9/lib/vant.min.js"></script>
+    <script src="./lrz.all.bundle.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    form: {
+                        contact: '',
+                        detail: '',
+                        version: '',
+                        machine: '',
+                        userId: "",
+                        userType: "0",//未登录
+                    },
+                    picUrlList: [],
+                    btnDis: true,
+                    showContactTitle: false,
+                    showContentTitle: false,
+                    showSuccess: false,
+                    uploadImg: false,
+                    disableUpload: false,
+                    hideContactBlur: true,
+                    overMaxCount: false,
+                }
+            },
+            created() {
+
+            },
+            watch: {
+                'form.detail'(val) {
+                    if (val.trim().length > 200) {
+                        this.form.detail = val.substring(0, 201)
+                    }
+                    if (!val.trim().length || val.trim().length > 200) {
+                        this.btnDis = true
+                    } else {
+                        this.btnDis = false
+                    }
+                },
+                'form.contact'(val) {
+                    if (val.length > 50) {
+                        this.form.contact = val.substring(0, 51)
+                    }
+                }
+            },
+            methods: {
+                // 显示标题
+                showTitle(cellName) {
+                    switch (cellName) {
+                        case 'contact':
+                            this.showContactTitle = true
+                            this.hideContactBlur = false
+                            break;
+                        case 'content':
+                            this.showContentTitle = true
+                            break;
+                        default:
+                            break;
+                    }
+                },
+                // 隐藏标题
+                hideTitle(cellName) {
+                    switch (cellName) {
+                        case 'contact':
+                            this.hideContactBlur = true
+                            break;
+                        default:
+                            break;
+                    }
+                },
+                // 获取hold
+                getPlaceHoder(type) {
+                    switch (type) {
+                        case 'contact':
+                            return this.showContactTitle ? '' : '手機號碼 / 電郵（選填，方便 Whoot! 與你聯絡）'
+                        case 'detail':
+                            return this.showContentTitle ? '' : '請描述你遇到的問題'
+                    }
+                },
+                closeMailPop() {
+                    this.showSuccess = false
+                    alert('feedback-success')
+                },
+                // 选择图片
+                afterRead(file) {
+                    if (!Array.isArray(file)) {
+                        this.uploadPic(file)
+                    } else {
+                        if (file.length > 6 || (this.picUrlList.length + file.length) > 6) {
+                            vant.Toast({
+                                message: "你最多只能選擇 6 張照片",
+                                icon: 'close'
+                            })
+                            if (this.picUrlList.length === 0) {
+                                file = file.slice(0, 6)
+                            } else {
+                                file = file.slice(0, 6 - this.picUrlList.length)
+                            }
+                        }
+                        // setTimeout(() => {
+                        file.map(item => {
+                            this.uploadPic(item)
+                        })
+                        // }, 1000)
+                    }
+                },
+                // 上传图片
+                uploadPic(file) {
+                    this.uploadImg = true
+                    this.disableUpload = true
+                    let fd = new FormData()
+                    lrz(file.file, { quality: 0.6 }).then(rst => {
+                        fd.append('file', rst.file)
+                        fd.append('bucket', 'world')
+                        this.btnDisable = true
+                        var config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            },
+                            transformRequest: [fd => fd]
+                        }
+                        axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local//gcs/file', fd, config).then(res => {
+                            this.uploadImg = false
+                            this.disableUpload = false
+                            // vant.toastLoading.clear()
+                            if (res.toString().indexOf('Network Error') >= 0 || res.toString().indexOf('timeout') >= 0) {
+                                vant.Toast({
+                                    message: "系統維護中, 請稍後再試。",
+                                    icon: 'close'
+                                })
+                                return
+                            }
+                            if (res.data.code === 0) {
+                                this.picUrlList.push(res.data.data)
+                                if (this.picUrlList.length >= 6) {
+                                    this.overMaxCount = true
+                                }
+                            } else {
+                                vant.Toast({
+                                    message: "系統維護中, 請稍後再試。",
+                                    icon: 'close'
+                                })
+                            }
+                        })
+                    }).catch(err => {
+                        vant.Toast({
+                            message: "系統維護中, 請稍後再試。",
+                            icon: 'close'
+                        })
+                    })
+                },
+                // 删除图片
+                delPic(pic) {
+                    var index = this.picUrlList.indexOf(pic)
+                    if (index > -1) {
+                        this.picUrlList.splice(index, 1)
+                    }
+                    if (this.picUrlList.length < 6) {
+                        this.overMaxCount = false
+                    }
+                },
+                submitFeedback() {
+                    if (this.form.detail === '') {
+                        return
+                    }
+                    var req = {
+                        userType: parseInt(this.form.userType),
+                        contact: this.form.contact,
+                        detail: this.form.detail,
+                        imgList: this.picUrlList,
+                        version: this.form.version,
+                        machine: this.form.machine
+                    }
+                    if (this.form.userType != '0') { //已登录用户
+                        req.userId = Number(this.form.userId)
+                    }
+                    vant.Toast.loading({
+                        duration: 0,
+                        forbidClick: true,
+                        loadingType: 'spinner',
+                        message: "提交中"
+                    })
+                   
+                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit',{},{
+                        params:req
+                    }).then(res => {
+                        vant.Toast.clear()
+                        if (res.toString().indexOf('Network Error') >= 0) {
+                            vant.Toast({
+                                message: "系統維護中, 請稍後再試。",
+                                icon: 'close'
+                            })
+                            return
+                        }
+                        if (res.data.code === 0) {
+                            this.showSuccess = true
+                        } else {
+                            vant.Toast({
+                                message: "系統維護中, 請稍後再試。",
+                                icon: 'close'
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+    <script>
+        var browserRule = /^.*((iPhone)|(iPad)|(Safari))+.*$/;
+        if (browserRule.test(navigator.userAgent)) {
+            window.onpageshow = function (event) {
+                if (event.persisted) {
+                    window.location.reload()
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
