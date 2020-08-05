@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>意见反馈</title>
+    <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.9/lib/index.css" />
 </head>
 <style>
@@ -71,7 +71,7 @@
         box-sizing: border-box;
     }
 
-    .feedback-page .van-cell :not(:last-child) ::after {
+    .feedback-page .van-cell:not(:last-child)::after {
         border-bottom: none;
     }
 
@@ -195,22 +195,42 @@
         right: 0;
     }
 
-    .content-form textarea ::-webkit-input-placeholder {
+    .feedback-page .common-input input::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #999;
     }
 
-    .content-form textarea :-moz-placeholder {
+    .feedback-page .common-input input:-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
         color: #999;
     }
 
-    .content-form textarea ::-moz-placeholder {
+    .feedback-page .common-input input::-moz-placeholder {
         /* Mozilla Firefox 19+ */
         color: #999;
     }
 
-    .content-form textarea ::-ms-input-placeholder {
+    .feedback-page .common-input input::-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #999;
+    }
+
+    .content-form textarea::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #999;
+    }
+
+    .content-form textarea:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #999;
+    }
+
+    .content-form textarea::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #999;
+    }
+
+    .content-form textarea::-ms-input-placeholder {
         /* Internet Explorer 10+ */
         color: #999;
     }
@@ -261,15 +281,19 @@
         font-size: 20px;
         opacity: 0.8;
     }
+
+    [v-cloak] {
+        display: none;
+    }
 </style>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div class="feedback-page">
             <!-- 联系方式 -->
             <van-cell-group>
                 <transition name="van-slide-up">
-                    <h2 v-show="showContactTitle">手機號碼 / 電郵（選填，方便 Whoot! 與你聯絡）</h2>
+                    <h2 v-show="showContactTitle">{{jsondata.whoot_contact_you}}</h2>
                 </transition>
                 <van-field ref="contactInput" :placeholder="getPlaceHoder('contact')" v-model.trim="form.contact"
                     :class="[hideContactBlur ? 'common-input':'color-input']" @focus="showTitle('contact')"
@@ -278,32 +302,21 @@
             <!-- 问题表述 -->
             <van-cell-group>
                 <transition name="van-slide-up">
-                    <h2 v-show="showContentTitle">請描述你遇到的問題</h2>
+                    <h2 v-show="showContentTitle">{{jsondata.describe_your_problem}}</h2>
                 </transition>
-                <van-field
-                   ref="contentInput" 
-                   :placeholder="getPlaceHoder('detail')"
-                    class="content-form"
-                    v-model="form.detail"
-                    rows="2"
-                    autosize
-                    resize="none"
-                    label=""
-                    type="textarea"
-                    maxlength="200"
-                    show-word-limit
-                    @focus="showTitle('content')" @blur="hideTitle('content')" 
-                />
-            </van-cell-group> 
+                <van-field ref="contentInput" :placeholder="getPlaceHoder('detail')" class="content-form"
+                    v-model="form.detail" rows="2" autosize resize="none" label="" type="textarea" maxlength="200"
+                    show-word-limit @focus="showTitle('content')" @blur="hideTitle('content')" />
+            </van-cell-group>
             <!-- 问题图片 -->
             <van-cell-group style="padding: 25px 0 10px 0;">
                 <div class="feed-pic">
-                   
+
                     <div v-for="(pic,index) in picUrlList" :key="index" :style="{backgroundImage: `url(${pic})` }"
                         style="margin: 0 5px 5px 0;" class="pre-img">
                         <div class="del-pic"><i class="el-icon-error" @click="delPic(pic)"></i></div>
                     </div>
-                    
+
                     <van-uploader v-if="!overMaxCount" multiple :after-read="afterRead" :disabled="disableUpload">
                         <div v-if="uploadImg" class="loadingImg" style="width: 0.9rem;height: 0.9rem">
                             <van-loading type="spinner" />
@@ -315,16 +328,16 @@
             </van-cell-group>
             <!-- 提交按钮 -->
             <van-cell class="cell-btn">
-                <van-button round :disabled="btnDis" type="info" style="width: 85%;" @click.native="submitFeedback">提交
+                <van-button round :disabled="btnDis" type="info" style="width: 85%;" @click.native="submitFeedback">{{jsondata.submit}}
                 </van-button>
             </van-cell>
             <!-- 提交成功 -->
             <van-popup v-model="showSuccess" round :close-on-click-overlay="false" style="width: 80%;">
                 <div class="email-box">
                     <img src="./img/login_forget_icon_sendmail.png" alt="">
-                    <h2>提交成功</h2>
-                    <span>感謝您的意見</span>
-                    <van-button round type="info" style="width: 70%;" @click.native="closeMailPop">好的</van-button>
+                    <h2>{{jsondata.submitSuccess}}</h2>
+                    <span>{{jsondata.thanks_your_feedback}}</span>
+                    <van-button round type="info" style="width: 70%;" @click.native="closeMailPop">{{jsondata.confirm}}</van-button>
                 </div>
             </van-popup>
         </div>
@@ -356,10 +369,11 @@
                     disableUpload: false,
                     hideContactBlur: true,
                     overMaxCount: false,
+                    jsondata:{} // 国际化
                 }
             },
             created() {
-
+                this.initForm()
             },
             watch: {
                 'form.detail'(val) {
@@ -379,6 +393,73 @@
                 }
             },
             methods: {
+                initForm() {
+                    var system = navigator.userAgent.toLowerCase()
+
+                    //获取用户ID、app版本号、设备型号
+                    if (system.indexOf('os') > 0) {
+                        window.webkit.messageHandlers.getUserDataForIos.postMessage({ title: '' })
+                        window.getUserDataForIos = result => {
+                            var userInfo = JSON.parse(result)
+                            this.setLang(userInfo.language)
+                            this.form.version = userInfo.version
+                            this.form.machine = userInfo.platform
+                            if (!userInfo.account) {//未登录
+                                this.form.userId = ""
+                            } else {
+                                this.form.userId = userInfo.account.id.toString()
+                                this.form.userType = userInfo.account.type.toString()
+                            }
+                        }
+                    } else {
+                        var href = decodeURI(window.location.href.split('?')[1])
+                        var andriodHref = href.split('&')
+                        this.setLang(andriodHref[0].substring(5))
+                        this.form.userId = andriodHref[1].substring(7)?andriodHref[1].substring(7):''
+                        this.form.userType = andriodHref[2].substring(9)?andriodHref[2].substring(9):''
+                        this.form.version = andriodHref[3].substring(8)?andriodHref[3].substring(8):''
+                        this.form.machine = andriodHref[4].substring(9)?andriodHref[4].substring(9):''
+                    }
+                },
+
+                setLang(lang) {
+                    if (lang === 'tc') {
+                        var title = JSON.stringify({ touchPos: 'title', title: '意見反映' })
+                        document.title = '意見反映'
+                        this.jsondata = {
+                            "whoot_contact_you": "手機號碼 / 電郵（選填，方便 Whoot! 與你聯絡）",
+                            "describe_your_problem": "請描述你遇到的問題",
+                            "submit": "提交",
+                            "submitSuccess": "提交成功",
+                            "thanks_your_feedback": "感謝您的意見",
+                            "error": "系統維護中, 請稍後再試。",
+                            "confirm": "好的",
+                            "submission_in_progress": "提交中",
+                            "pic_almost": "你最多只能選擇 6 張照片"
+                        }
+                        if(navigator.userAgent.toLowerCase().indexOf('os') > 0){
+                            alert(title)
+                        }
+                    } else {
+                        var title = JSON.stringify({ touchPos: 'title', title: 'Suggestions/Feedback' })
+                        document.title = 'Suggestions/Feedback'
+                        this.jsondata = {
+                            "whoot_contact_you": "Phone Number/Email (optional)",
+                            "describe_your_problem": "Please describe the problem in detail",
+                            "submit": "Submit",
+                            "submitSuccess": "Submission Successful!",
+                            "thanks_your_feedback": "Thank you for your feedback!",
+                            "error": "System is under maintenance, please try agian later.",
+                            "confirm": "OK",
+                            "submission_in_progress": "Submission in progress",
+                            "pic_almost": "You can upload up to 6 photos"
+                        }
+                        if(navigator.userAgent.toLowerCase().indexOf('os') > 0){
+                            alert(title)
+                        }
+                    }
+                },
+
                 // 显示标题
                 showTitle(cellName) {
                     switch (cellName) {
@@ -407,9 +488,9 @@
                 getPlaceHoder(type) {
                     switch (type) {
                         case 'contact':
-                            return this.showContactTitle ? '' : '手機號碼 / 電郵（選填，方便 Whoot! 與你聯絡）'
+                            return this.showContactTitle ? '' : this.jsondata.whoot_contact_you
                         case 'detail':
-                            return this.showContentTitle ? '' : '請描述你遇到的問題'
+                            return this.showContentTitle ? '' : this.jsondata.describe_your_problem
                     }
                 },
                 closeMailPop() {
@@ -423,7 +504,7 @@
                     } else {
                         if (file.length > 6 || (this.picUrlList.length + file.length) > 6) {
                             vant.Toast({
-                                message: "你最多只能選擇 6 張照片",
+                                message: this.jsondata.pic_almost,
                                 icon: 'close'
                             })
                             if (this.picUrlList.length === 0) {
@@ -454,13 +535,13 @@
                             },
                             transformRequest: [fd => fd]
                         }
-                        axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local//gcs/file', fd, config).then(res => {
+                        axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/gcs/file', fd, config).then(res => {
                             this.uploadImg = false
                             this.disableUpload = false
                             // vant.toastLoading.clear()
                             if (res.toString().indexOf('Network Error') >= 0 || res.toString().indexOf('timeout') >= 0) {
                                 vant.Toast({
-                                    message: "系統維護中, 請稍後再試。",
+                                    message:this.jsondata.error,
                                     icon: 'close'
                                 })
                                 return
@@ -472,14 +553,14 @@
                                 }
                             } else {
                                 vant.Toast({
-                                    message: "系統維護中, 請稍後再試。",
+                                    message:this.jsondata.error,
                                     icon: 'close'
                                 })
                             }
                         })
                     }).catch(err => {
                         vant.Toast({
-                            message: "系統維護中, 請稍後再試。",
+                            message:this.jsondata.error,
                             icon: 'close'
                         })
                     })
@@ -504,25 +585,26 @@
                         detail: this.form.detail,
                         imgList: this.picUrlList,
                         version: this.form.version,
-                        machine: this.form.machine
+                        machine: this.form.machine,
+                        userId: this.form.userId
                     }
                     if (this.form.userType != '0') { //已登录用户
-                        req.userId = Number(this.form.userId)
+                        req.userId = Number(this.form.userId)?Number(this.form.userId):''
                     }
                     vant.Toast.loading({
                         duration: 0,
                         forbidClick: true,
                         loadingType: 'spinner',
-                        message: "提交中"
+                        message: this.jsondata.submission_in_progress
                     })
-                   
-                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit',{},{
-                        params:req
+
+                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit', {}, {
+                        params: req
                     }).then(res => {
                         vant.Toast.clear()
                         if (res.toString().indexOf('Network Error') >= 0) {
                             vant.Toast({
-                                message: "系統維護中, 請稍後再試。",
+                                message: this.jsondata.error,
                                 icon: 'close'
                             })
                             return
@@ -531,7 +613,7 @@
                             this.showSuccess = true
                         } else {
                             vant.Toast({
-                                message: "系統維護中, 請稍後再試。",
+                                message:this.jsondata.error,
                                 icon: 'close'
                             })
                         }
