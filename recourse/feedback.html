@@ -598,10 +598,7 @@
                         loadingType: 'spinner',
                         message: this.jsondata.submission_in_progress
                     })
-
-                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit', {}, {
-                        params: req
-                    }).then(res => {
+                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit',req).then(res => {
                         vant.Toast.clear()
                         if (res.toString().indexOf('Network Error') >= 0) {
                             vant.Toast({

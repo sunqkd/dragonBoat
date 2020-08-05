@@ -599,9 +599,7 @@
                         message: this.jsondata.submission_in_progress
                     })
 
-                    axios.post('https://hk.whoot.com/feedback/submit', {}, {
-                        params: req
-                    }).then(res => {
+                    axios.post('https://hk.whoot.com/feedback/submit',req).then(res => {
                         vant.Toast.clear()
                         if (res.toString().indexOf('Network Error') >= 0) {
                             vant.Toast({
