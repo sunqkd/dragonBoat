@@ -536,7 +536,7 @@
                             },
                             transformRequest: [fd => fd]
                         }
-                        axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/gcs/file', fd, config).then(res => {
+                        axios.post('https://hk.whoot.com/gcs/file', fd, config).then(res => {
                             this.uploadImg = false
                             this.disableUpload = false
                             // vant.toastLoading.clear()
@@ -599,7 +599,7 @@
                         message: this.jsondata.submission_in_progress
                     })
 
-                    axios.post('https://qc-k8s.ingcreations.com/gw/whoot-local/feedback/submit', {}, {
+                    axios.post('https://hk.whoot.com/feedback/submit', {}, {
                         params: req
                     }).then(res => {
                         vant.Toast.clear()
