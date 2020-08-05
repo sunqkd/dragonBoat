@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+  <title>feedback</title>
+</head>
+
+<body></body>
+<script>
+  if(window.location.href.indexOf('?') >= 0){//安卓
+    var str = window.location.search.split('?')[1]
+    var androidStr = str.split('&')
+    var lang = androidStr[0].substring(5)
+    var userId = androidStr[1].substring(7)
+    var userType = androidStr[2].substring(9)
+    var version = androidStr[3].substring(8)
+    var platform = androidStr[4].substring(9)
+    window.location.href = 'https://qc.whoot.com/web/user/#/feedback?lang=' + lang + '&userId=' + userId + '&userType=' + userType + '&version=' + version + '&platform=' + platform //qc
+    // window.location.href = 'https://app.whoot.com/#/feedback?userId=' + userId + '&userType=' + userType + '&version=' + version + '&platform=' + platform //release
+  } else {//ios
+    window.location.href = 'https://qc.whoot.com/web/user/#/feedback' //qc
+    // window.location.href = 'https://app.whoot.com/#/feedback' //release
+  }
+</script>
+
+</html>
