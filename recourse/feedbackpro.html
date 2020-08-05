@@ -348,6 +348,7 @@
     <script type="text/javascript" src="./axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vant@2.9/lib/vant.min.js"></script>
     <script src="./lrz.all.bundle.js"></script>
+    <script src="./qs.js"></script>
     <script type="text/javascript">
         var vm = new Vue({
             el: '#app',
@@ -599,7 +600,11 @@
                         message: this.jsondata.submission_in_progress
                     })
 
-                    axios.post('https://hk.whoot.com/feedback/submit',req).then(res => {
+                    axios.post('https://hk.whoot.com/feedback/submit',{},{
+                        params:req,
+                        transformRequest: [data => Qs.stringify(data)],
+                        paramsSerializer: data => Qs.stringify(data)
+                    }).then(res => {
                         vant.Toast.clear()
                         if (res.toString().indexOf('Network Error') >= 0) {
                             vant.Toast({
