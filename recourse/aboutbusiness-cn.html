@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>關於 Whoot!</title>
+    <style type="text/css">
+        body {
+            background: url('./img/bg-about.jpg') center top no-repeat;
+            background-size: cover;
+        }
+        html{
+            font-size:36px;
+        }
+        p{
+            margin:0;padding:0;
+            line-height: .6rem;
+            margin-bottom: .26667rem;
+            font-size: .37333rem;
+        }
+       
+        .about {
+            padding-top: 45px;
+            text-align: justify;
+            width: 90%;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 30px;
+        }
+        #version{
+            font-size: 15px;
+        }
+        .about-logo {
+            height: 60px;
+            text-align: center;
+            background: url('./img/logo-about.png') center top no-repeat;
+            background-size: contain;
+            margin: 0 auto;
+        }
+        img {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="about">
+        <div class="about-logo"></div>
+        <h4 style="text-align: center;" id="version">版本&nbsp;&nbsp;</h4>
+        <p>Whoot! Business 為入駐Whoot!平台的商家提供門店管理、商品兌換、兌換記錄、評論查看及回复、用戶管理等服務。</p>
+        <p>主要功能：</p>
+        <p>
+            1. 吸引新顧客到您的餐廳;<br/> 
+            2. 讓舊顧客更頻繁地到您的餐廳用餐;<br/>
+            3. 查看顧客兌換的數量和詳細信息;<br/>
+            4. 透過相關數據了解顧客需求並獎勵他們;
+        </p>
+        <p>Whoot! Business 將一直致力於為我們的合作夥伴提供更好的服務。</p>
+    </div>
+    <script>
+        var title = JSON.stringify({ touchPos: 'title', title: '關於 Whoot!' })
+        var system = navigator.userAgent.toLowerCase()
+        if (system.indexOf('os') > 0) {
+            alert(title)
+        } else { }
+        var version = window.location.search.substring(9)
+        version.length > 0 ? document.getElementById('version').append(version) :
+            document.getElementById('version').append('2.7.0_Beta')
+    </script>
+</body>
+
+</html>
