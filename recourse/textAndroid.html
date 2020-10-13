@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安卓测试</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    .tanchuang{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .inner{
+        width:80%;
+        height:200px;
+        background:#ffffff
+    }
+</style>
+<body>
+    <div id="app">
+        <button @click="text()">点击</button>
+        <button @click="flagss()">点击22</button>
+        <div class="tanchuang" v-if="flag">
+            <div class="inner">
+                <button @click="cencel()">取消</button>
+                <button @click="certain()">确定</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return { 
+                    flag:false
+                }
+            },
+            created(){
+               
+            },
+            methods:{
+                text(){
+                    if(window.webkit){
+                        alert('苹果手机')
+                    }else if(window.android.confirmClick){
+                        window.android.confirmClick('1213')
+                    }else{
+                        alert('其他')
+                    }
+                },
+                flagss(){
+                    this.flag = true
+                },
+                cencel(){
+                    console.log('取消')
+                    this.flag = false
+                },
+                certain(){
+                    console.log('确定')
+                    if(window.webkit){
+                        alert('苹果手机')
+                    }else if(window.android.alertConfirmClick){
+                        window.android.alertConfirmClick(true)
+                    }else{
+                        alert('其他')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
